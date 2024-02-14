@@ -1,0 +1,363 @@
+/*BODY*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+/*HEADER*/
+.header-container {
+    width: 100vw;
+    height: 3rem;
+    background-color: white;
+    -webkit-box-shadow: 0px 10px 22px 1px rgba(0,0,0,0.36);
+    -moz-box-shadow: 0px 10px 22px 1px rgba(0,0,0,0.36);
+    box-shadow: 0px 10px 22px 1px rgba(0,0,0,0.36);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo-area {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo {
+    width: 150px;
+}
+
+/*VIEW-NAVBAR*/
+
+.nav-container {
+    padding-top: 5rem;
+    padding-bottom: 0.75rem;
+    position: fixed;
+    z-index: 9;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.nav-option {
+    transition : 1000ms;
+    transform: translateY(0);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nav-active {
+    color: #fff;
+    background: linear-gradient(90deg, #4f4f4f 0%, #32cd32 100%);
+    padding: 10px 20px;
+    border: solid #ffffff 2px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-active:hover{
+    transition : 1000ms;
+    transform : translateY(-5px);
+    background: linear-gradient(90deg, #4f4f4f 0%, #a5c900 100%);
+    color: #ffffff;
+    border: solid 2px #ffffff;
+}
+
+/*BIPS AREA*/
+
+.app-body {
+    padding-top: 7rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bip-post-container {
+    margin-bottom: 30px;
+}
+
+.bip-card, .comments-section-form-container, .comment-list-container, .auth-container {
+    width: 80vw;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid lightgreen;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 12px 32px -11px rgba(0,0,0,0.61);
+    -moz-box-shadow: 0px 12px 32px -11px rgba(0,0,0,0.61);
+    box-shadow: 0px 12px 32px -11px rgba(0,0,0,0.61);
+    padding: 5px 15px;
+    margin-bottom: 2rem;
+}
+
+.bip-card-id {
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px; 
+    position: relative; 
+}
+
+.bip-card-id__img {
+    width: 30px;
+}
+
+.end {
+    align-self: flex-end;
+    min-width: 40px;
+    max-width: 70px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.bip-card-id__username {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.bip-card-category {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bip-card-category__list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+    padding: 5px;
+    padding-left: 50px;
+    margin: 0;
+}
+
+.bip-card-category__item {
+    font-size: 0.8rem;
+}
+
+.category-item {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.angular-color {
+    border: 1px solid lightcoral;
+    color: lightcoral;
+}
+
+.node-color {
+    border: 1px solid limegreen;
+    color: limegreen;
+}
+
+.bip-card-content-and-interactions-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.bip-card-interactions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.bip-card-interactions__item {
+    width: 20px;
+}
+
+.bip-card-content-area__content {
+    font-size: 15px;
+}
+
+.bip-card-image-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bip-card-image-area__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*COMMENT-FORM*/
+
+.comments-section-form-container {
+    border: 2px solid lightgrey;
+    background-color: gainsboro;
+    position: relative;
+    z-index: 1;
+}
+
+.comments-section-form {
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 97%;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-area label {
+    font-size: 17px;
+    color: #333;
+}
+
+
+.input-area input, .input-area textarea {
+    width: 100%;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.input-area textarea::placeholder {
+    font-family: 'Roboto', sans-serif;
+    padding: 5px;
+}
+
+.input-area input {
+    height: 25px;
+}
+
+.form-button {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    color: #ffffff;
+    font-size: 15px;
+    background: limegreen;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+}
+  
+.form-button:hover {
+    background: lightgreen;
+    text-decoration: none;
+}
+
+/*COMMENT LIST*/
+
+.comment-list-container {
+    margin-top: -80px;
+    padding-top: 60px;
+    position: relative;
+    z-index: 0;
+}
+
+.comment-list-number {
+    font-size: 20px;
+    color: #4f4f4f;
+}
+
+.comment-list-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.comment-list-date {
+    color: limegreen;
+    margin-bottom: 0;
+}
+
+.comment-list-content {
+    font-size: 12px;
+    margin: 20px 0;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+/*PROFILE*/
+
+.profile-id-container, .profile-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-id-image {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.profile-id-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/*AUTH-LOGIN-REGISTER*/
+
+.form-title {
+    text-align: center;
+    font-size: 25px;
+}
+
+.auth-container {
+    margin-bottom: 20vh;
+    max-width: 300px;
+    padding: 15px;
+}
+
+.error-msg {
+    color: red;
+    margin: 5px 0;
+}

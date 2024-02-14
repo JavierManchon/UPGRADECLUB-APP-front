@@ -1,0 +1,15 @@
+<form (ngSubmit)="handleLogin()">
+    <div class="form-group input-area">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div class="form-group input-area">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <div class="error-msg" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+    <button class="form-button" type="submit">Iniciar sesión</button>
+    <p>¿Todavía no tienes una cuenta? <a routerLink="/auth/register">Regístrate aquí</a>.</p>
+  </form>
