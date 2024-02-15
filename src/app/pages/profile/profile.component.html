@@ -3,27 +3,29 @@
     <app-view-navbar></app-view-navbar>
     <article class="profile-id-container">
         <img class="profile-id-image" src="../../../assets/images/icono-muestra.png" alt="">
-        <h3 class="profile-id-name">{{userData.username}}</h3>
+        <h3 class="profile-id-name">{{userData?.username}}</h3>
     </article>
-    <article class="my-bips-container">
-        <div class="bip-card">
+    <article *ngIf="bipsList && bipsList.length > 0" class="my-bips-container">
+        <div class="bip-card" *ngFor="let bip of bipsList">
             <div class="bip-card-id">
-                <img class="bip-card-id__img" src="./../../../assets/images/icono-muestra.png" alt="icono usuario"/>
-                <h4 class="bip-card-id__username">Javier Manchon García</h4>
-                <img class="bip-card-id__img end" src="./../../../assets/images/volver-icono.png" alt="icono volver"/>
+                <img class="bip-card-id__img" [src]="userData.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
+                <h4 class="bip-card-id__username">{{userData?.username}}</h4>
+                <img class="bip-card-id__img end" src="./../../../assets/images/cerrar-icono.png" alt="icono volver" (click)="deleteBip(bip._id)"/>
             </div>
             <div class="bip-card-category">
                 <ul class="bip-card-category__list">
-                    <li class="bip-card-category__item angular-color category-item">ANGULAR</li>
-                    <li class="bip-card-category__item node-color category-item">NODE</li>
+                    <li class="bip-card-category__item angular-color category-item" *ngFor="let category of bip.categories">{{ category }}</li>
                 </ul>
             </div>
             <div class="bip-card-content-area">
-                <p class="bip-card-content-area__content">Que pasada las posibilidades que ofrece Angular! Pero tengo alguna problema resolviendo la integracion con el backend que he hecho en Node.. A alguien más le pasa?</p>
+                <p class="bip-card-content-area__content">{{ bip.content }}</p>
             </div>
-            <div class="bip-card-image-area">
-                <img class="bip-card-image-area__img" src="./../../../assets/images/img-ejemplo-angular.png" alt=""/>
-            </div>  
+            <div class="bip-card-image-area" *ngIf="bip.picture">
+                <img class="bip-card-image-area__img" [src]="bip.picture" alt=""/>
+              </div>    
         </div>
+    </article>
+    <article *ngIf="!bipsList || bipsList.length === 0" class="no-bips-message">
+        <p>Todavía no has publicado ningún bip...</p>
     </article>
 </section>

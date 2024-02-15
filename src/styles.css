@@ -72,6 +72,11 @@ body {
     font-weight: bold;
 }
 
+.nav-option a {
+    text-decoration: none;
+    color: #4f4f4f;
+}
+
 .nav-active {
     color: #fff;
     background: linear-gradient(90deg, #4f4f4f 0%, #32cd32 100%);
@@ -85,6 +90,10 @@ body {
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+}
+
+.nav-active a {
+    color: #fff;
 }
 
 .nav-active:hover{
@@ -109,7 +118,9 @@ body {
 
 .bip-post-container {
     margin-bottom: 30px;
+    width: 100%;
 }
+
 
 .bip-card, .comments-section-form-container, .comment-list-container, .auth-container {
     width: 80vw;
@@ -146,6 +157,7 @@ body {
     position: absolute;
     top: 5px;
     right: 0;
+    cursor: pointer;
 }
 
 .bip-card-id__username {
@@ -189,6 +201,21 @@ body {
     color: limegreen;
 }
 
+.react-color {
+    border: 1px solid blue;
+    color: blue;
+}
+
+.general-color {
+    border: 1px solid gray;
+    color: gray;
+}
+
+.javascript-color {
+    border: 1px solid orange;
+    color: orange;
+}
+
 .bip-card-content-and-interactions-area {
     display: flex;
     flex-direction: row;
@@ -223,6 +250,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 /*COMMENT-FORM*/
@@ -272,6 +301,10 @@ body {
     height: 25px;
 }
 
+.select-category {
+    margin-bottom: 10px;
+}
+
 .form-button {
     -webkit-border-radius: 28;
     -moz-border-radius: 28;
@@ -282,6 +315,7 @@ body {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     border: none;
+    margin-top: 10px;
 }
   
 .form-button:hover {
@@ -342,6 +376,20 @@ hr {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 40px;
+}
+
+.no-bips-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-bips-message p {
+    font-size: 30px;
+    margin-top: 20%;
+    color: #4f4f4f;
+    width: 70%;
 }
 
 /*AUTH-LOGIN-REGISTER*/
