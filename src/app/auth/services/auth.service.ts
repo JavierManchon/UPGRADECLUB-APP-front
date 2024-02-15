@@ -13,8 +13,6 @@ export class AuthService {
   };
 
   login(user: any) {
-    const token = sessionStorage.getItem('token');
-    console.log('Token incluido en la solicitud:', token);
     return this.http.post('http://localhost:3000/api/login',user, { observe: 'response' })
   };
 
@@ -22,8 +20,19 @@ export class AuthService {
     return this.http.get('http://localhost:3000/api/logout')
   };
 
-  getUserByToken(){
-    return this.http.get(`http://localhost:3000/api/get-user`)
+  getUserByToken(token: string){
+    const headers = {
+      "Authorization": `Bearer ${token}`
+    }
+    return this.http.get(`http://localhost:3000/api/get-user`, {headers})
+  }
+
+  getUserById(id: string) {
+    return this.http.get(`http://localhost:3000/api/get-user/${id}`);
+  }
+
+  patchUser(id: string, userData: any) {
+    return this.http.patch(`http://localhost:3000/api/edit/${id}`, userData)
   }
 
 }

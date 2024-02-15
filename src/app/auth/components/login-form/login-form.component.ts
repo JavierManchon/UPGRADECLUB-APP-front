@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -21,12 +22,15 @@ export class LoginFormComponent {
       email: this.email,
       password: this.password
     }
-      this.authService.login(userObject).subscribe({
+      this.authService.login(userObject).pipe(
+        tap((response: any) => {
+          sessionStorage.setItem('token', JSON.stringify(response.body.token))
+        })
+      ).subscribe({
         next: (response: any) => {
             if(response){
               console.log(response);
-              sessionStorage.setItem('token', JSON.stringify(response.body.token))
-                this.router.navigate(['home'])
+              this.router.navigate(['home'])
             }
         },
         error: (error) => {

@@ -1,12 +1,28 @@
 
 <section class="profile-container">
-    <app-view-navbar></app-view-navbar>
     <article class="profile-id-container">
-        <img class="profile-id-image" src="../../../assets/images/icono-muestra.png" alt="">
+        <img class="profile-id-image" [src]="userData?.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="">
         <h3 class="profile-id-name">{{userData?.username}}</h3>
+        <img class="edit-icon" src="./../../../assets/images/editar-icono.png" (click)="toggleEditForm()">
+        <div class="edit-profile-form" *ngIf="showEditForm">
+            <form (ngSubmit)="updateUserProfile()" #editForm="ngForm">
+                <div class="form-group input-area">
+                    <label for="newUsername">Nuevo nombre de usuario:</label>
+                    <input type="text" id="newUsername" name="newUsername" [(ngModel)]="newUsername" />
+                </div>
+                <div class="form-group input-area">
+                    <label for="newPicture">Nueva imagen de perfil:</label>
+                    <input type="file" id="newPicture" name="newPicture" (change)="onFileChange($event)" />
+                </div>
+                <div class="edit-profile-form-buttons">
+                    <button type="submit" class="form-button">Guardar cambios</button>
+                    <img class="bip-card-id__img end" (click)="onCancelEdit()" src="./../../../assets/images/cerrar-icono.png" alt="">
+                </div>
+            </form>
+        </div>
     </article>
     <article *ngIf="bipsList && bipsList.length > 0" class="my-bips-container">
-        <div class="bip-card" *ngFor="let bip of bipsList">
+        <div class="bip-card" *ngFor="let bip of bipsList.reverse()">
             <div class="bip-card-id">
                 <img class="bip-card-id__img" [src]="userData.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
                 <h4 class="bip-card-id__username">{{userData?.username}}</h4>
@@ -14,7 +30,7 @@
             </div>
             <div class="bip-card-category">
                 <ul class="bip-card-category__list">
-                    <li class="bip-card-category__item angular-color category-item" *ngFor="let category of bip.categories">{{ category }}</li>
+                    <li class="bip-card-category__item category-item" *ngFor="let category of bip.categories" [class]="category + '-color'">{{ category }}</li>
                 </ul>
             </div>
             <div class="bip-card-content-area">

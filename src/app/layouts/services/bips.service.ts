@@ -13,6 +13,10 @@ export class BipsService {
     return this.http.get('http://localhost:3000/api/bips')
   }
 
+  getAllBips() {
+    return this.http.get('http://localhost:3000/api/all-bips')
+  }
+
   createBip(bip: any) {
     return this.http.post('http://localhost:3000/api/create-bip', bip)
   }

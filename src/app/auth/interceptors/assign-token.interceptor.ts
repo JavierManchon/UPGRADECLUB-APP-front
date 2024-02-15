@@ -14,11 +14,17 @@ export class AssignTokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = JSON.parse(sessionStorage.getItem('token')!);
-    const authRequest = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    let authRequest
+    if(token) {
+      authRequest = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    } else {
+      authRequest = request;
+    }
+    
 
     return next.handle(authRequest);
   }

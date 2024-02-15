@@ -28,14 +28,22 @@ body {
 }
 
 .header-logo-area {
-    width: 30%;
+    width: 100%;
+    max-width: 960px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .header-logo {
     width: 150px;
+}
+
+.logout-icon {
+    position: absolute;
+    width: 30px;
+    right: 15px;
 }
 
 /*VIEW-NAVBAR*/
@@ -84,7 +92,7 @@ body {
     border: solid #ffffff 2px;
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
     border-radius: 50px;
-    transition : 1000ms;
+    transition : 500ms;
     transform: translateY(0);
     display: flex;
     flex-direction: row;
@@ -97,9 +105,9 @@ body {
 }
 
 .nav-active:hover{
-    transition : 1000ms;
+    transition : 500ms;
     transform : translateY(-5px);
-    background: linear-gradient(90deg, #4f4f4f 0%, #a5c900 100%);
+    background: linear-gradient(90deg, #4f4f4f 0%, limegreen 100%);
     color: #ffffff;
     border: solid 2px #ffffff;
 }
@@ -119,6 +127,7 @@ body {
 .bip-post-container {
     margin-bottom: 30px;
     width: 100%;
+    margin-top: -30px;
 }
 
 
@@ -148,12 +157,13 @@ body {
 
 .bip-card-id__img {
     width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 .end {
     align-self: flex-end;
-    min-width: 40px;
-    max-width: 70px;
+    width: 30px;
     position: absolute;
     top: 5px;
     right: 0;
@@ -174,6 +184,7 @@ body {
 .bip-card-category__list {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     gap: 10px;
     list-style: none;
@@ -191,27 +202,27 @@ body {
     border-radius: 10px;
 }
 
-.angular-color {
+.Angular-color {
     border: 1px solid lightcoral;
     color: lightcoral;
 }
 
-.node-color {
+.Node-color {
     border: 1px solid limegreen;
     color: limegreen;
 }
 
-.react-color {
+.React-color {
     border: 1px solid blue;
     color: blue;
 }
 
-.general-color {
+.General-color {
     border: 1px solid gray;
     color: gray;
 }
 
-.javascript-color {
+.Javascript-color {
     border: 1px solid orange;
     color: orange;
 }
@@ -365,17 +376,49 @@ hr {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
 .profile-id-image {
     width: 120px;
+    height: 120px;
     margin-bottom: 20px;
+    border-radius: 50%;
 }
 
 .profile-id-name {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 40px;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 0;
+    right: 25%;
+    width: 20px;
+    cursor: pointer;
+}
+
+.edit-profile-form {
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid lightgrey;
+    border-radius: 30px;
+    padding: 15px;
+}
+
+.edit-profile-form-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-profile-form-buttons img {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    cursor: pointer;
 }
 
 .no-bips-message {

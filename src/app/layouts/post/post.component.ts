@@ -21,8 +21,7 @@ export class PostComponent {
       React: [false],
       Angular: [false],
       Node: [false],
-      Javascript: [false],
-      picture: [null]
+      Javascript: [false]
     })
   }
 

@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: HomeComponent
   },
   {
-    path: 'profile', component: ProfileComponent, canActivate: [verifyTokenGuard]
+    path: 'profile/:id', component: ProfileComponent, canActivate: [verifyTokenGuard]
   },
   {
     path: 'bip', component: SingleBipComponent, canActivate: [verifyTokenGuard]

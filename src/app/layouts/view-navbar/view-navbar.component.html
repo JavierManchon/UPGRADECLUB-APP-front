@@ -1,8 +1,11 @@
 <nav class="nav-container">
     <div class="nav-area">
-        <ul class="nav-list">
-            <li class="nav-option nav-active"><a routerLink=" ">Home</a></li>
-            <li class="nav-option"><a routerLink="/profile">Perfil</a></li>
+        <ul class="nav-list" *ngIf="isLoggedIn()">
+            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Home'}" (click)="handleNavigateHome()">Home</li>
+            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Profile'}" (click)="handleNavigateProfile(userData?._id)">Perfil</li>
         </ul>
     </div>
 </nav>
+
+
+<!--Añado el ngIF con userData por el tema de la asincronía, si intendo hacer el hadleRedirect sin compobrar si el userData esta disponible la url es null-->

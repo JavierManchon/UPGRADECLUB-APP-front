@@ -1,6 +1,28 @@
-<app-view-navbar></app-view-navbar>
+
 <app-post *ngIf="activeToken"></app-post>
-<app-bip-card></app-bip-card>
-<app-bip-card></app-bip-card>
-<app-bip-card></app-bip-card>
-<app-bip-card></app-bip-card>
+<article *ngIf="bipsList && bipsList.length > 0" class="my-bips-container">
+    <div class="bip-card" *ngFor="let bip of bipsList.reverse()">
+        <div class="bip-card-id">
+            <img class="bip-card-id__img" [src]="getUserImage(bip.user)" alt="icono usuario"/>
+            <h4 class="bip-card-id__username">{{ getUserName(bip.user) }}</h4>
+        </div>
+        <div class="bip-card-category">
+            <ul class="bip-card-category__list">
+                <li class="bip-card-category__item category-item" *ngFor="let category of bip.categories" [class]="category + '-color'">{{ category }}</li>
+            </ul>
+        </div>
+        <div class="bip-card-content-and-interactions-area">
+            <div class="bip-card-interactions">
+                <img class="bip-card-interactions__item" src="./../../../assets/images/like-image.png" alt="icono like"/>
+                <img class="bip-card-interactions__item" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
+            </div>
+            <p class="bip-card-content-area__content">{{ bip.content }}</p>
+        </div>
+        <div class="bip-card-image-area" *ngIf="bip.picture">
+            <img class="bip-card-image-area__img" [src]="bip.picture" alt=""/>
+          </div>    
+    </div>
+</article>
+<article *ngIf="!bipsList || bipsList.length === 0" class="no-bips-message">
+    <p>Todavía no hay publicado ningún bip...</p>
+</article>
