@@ -1,5 +1,5 @@
 import { BipsService } from 'src/app/layouts/services/bips.service';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
+
+  @Output() bipCreated = new EventEmitter<void>();
 
   createBipForm!: FormGroup;
   selectedFile!: File | null;
@@ -58,24 +60,26 @@ export class PostComponent {
   createBip(){
     const formData = new FormData();
 
-    // Obtener los valores del formulario
     const { content } = this.createBipForm.value;
-    console.log(this.selectedCategories)
+    console.log(this.selectedCategories);
 
-    // Convertir el array de categorías en una cadena separada por comas
-    const categoriesAsString = this.selectedCategories.join(',');
+    //const categoriesAsString = this.selectedCategories.join(',');
 
-    // Agregar los valores al FormData
     formData.append('content', content);
     formData.append('picture', this.selectedFile!);
     this.selectedCategories.forEach(category => {
       formData.append('categories', category);
     })
     console.log(formData.getAll("categories"));
-    // Enviar la solicitud al servicio
     this.bipsService.createBip(formData).subscribe({
       next: (response) => {
-          console.log(response)
+          console.log(response);
+          this.bipCreated.emit();
+
+        // Reseteo los valores del formulario
+        this.createBipForm.reset();
+        this.selectedFile = null;
+        this.selectedCategories = [];
       },
       error: (error) => {
         console.log(error)

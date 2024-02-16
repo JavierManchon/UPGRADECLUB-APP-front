@@ -230,7 +230,7 @@ body {
 .bip-card-content-and-interactions-area {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 30px;
 }
@@ -245,6 +245,7 @@ body {
 
 .bip-card-interactions__item {
     width: 20px;
+    cursor: pointer;
 }
 
 .bip-card-content-area__content {
@@ -265,18 +266,38 @@ body {
     margin-bottom: 10px;
 }
 
+.bip-card-comment-form-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 0;
+}
+
 /*COMMENT-FORM*/
+
+.app-comment-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .comments-section-form-container {
     border: 2px solid lightgrey;
     background-color: gainsboro;
     position: relative;
-    z-index: 1;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .comments-section-form {
     padding: 15px 0;
-    box-sizing: border-box;
+    width: 90%;
 }
 
 .input-area {
@@ -327,6 +348,7 @@ body {
     text-decoration: none;
     border: none;
     margin-top: 10px;
+    cursor: pointer;
 }
   
 .form-button:hover {
@@ -337,10 +359,12 @@ body {
 /*COMMENT LIST*/
 
 .comment-list-container {
-    margin-top: -80px;
-    padding-top: 60px;
     position: relative;
     z-index: 0;
+    width: 90%;
+    border: none;
+    margin-bottom: 0;
+    padding-top: 15px;
 }
 
 .comment-list-number {
@@ -348,13 +372,22 @@ body {
     color: #4f4f4f;
 }
 
+.comment-list-area__id {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
 .comment-list-name {
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 3px;
+    margin: 0;
 }
 
-.comment-list-date {
+.comment-list-date, .bip-card-content-area__date {
     color: limegreen;
     margin-bottom: 0;
 }

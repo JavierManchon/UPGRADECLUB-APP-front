@@ -1,13 +1,7 @@
-<section class="comments-section-form-container">
-    <form class="comments-section-form">
-        <div class="input-area form-group">
-            <label for="">Nombre</label>
-            <input type="text" class="form-control">
-        </div>
-        <div class="input-area form-group">
-            <label for="">Comentario</label>
-            <textarea type="text" class="form-control" cols="30" rows="5" placeholder="Publica tu respuesta"></textarea>
-        </div>
-        <button class="form-button">Responder</button>
-    </form>
-</section>
+<form class="comments-section-form" (ngSubmit)="submitComment()">
+    <div class="input-area form-group">
+        <label for="">Comentario</label>
+        <textarea type="text" class="form-control" cols="30" rows="5" placeholder="Publica tu respuesta" [(ngModel)]="comment" name="comment"></textarea>
+    </div>
+    <button type="submit" class="form-button">Responder</button>
+</form>

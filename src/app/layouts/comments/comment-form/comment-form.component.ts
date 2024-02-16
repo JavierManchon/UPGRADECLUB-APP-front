@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-comment-form',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./comment-form.component.css']
 })
 export class CommentFormComponent {
+  @Output() commentSubmitted = new EventEmitter<{ comment: string }>();
+  comment: string = '';
 
+  submitComment() {
+    if (this.comment) {
+      this.commentSubmitted.emit({ comment: this.comment });
+
+      this.comment = '';
+    }
+  }
 }
+
+

@@ -1,9 +1,9 @@
 
-<app-post *ngIf="activeToken"></app-post>
+<app-post *ngIf="activeToken" (bipCreated)="updateBipsList()"></app-post>
 <article *ngIf="bipsList && bipsList.length > 0" class="my-bips-container">
     <div class="bip-card" *ngFor="let bip of bipsList.reverse()">
         <div class="bip-card-id">
-            <img class="bip-card-id__img" [src]="getUserImage(bip.user)" alt="icono usuario"/>
+            <img class="bip-card-id__img" [src]="getUserImage(bip.user) ? getUserImage(bip.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
             <h4 class="bip-card-id__username">{{ getUserName(bip.user) }}</h4>
         </div>
         <div class="bip-card-category">
@@ -14,13 +14,30 @@
         <div class="bip-card-content-and-interactions-area">
             <div class="bip-card-interactions">
                 <img class="bip-card-interactions__item" src="./../../../assets/images/like-image.png" alt="icono like"/>
-                <img class="bip-card-interactions__item" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
+                <img class="bip-card-interactions__item" (click)="toggleCommentSection(bip._id)" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
             </div>
             <p class="bip-card-content-area__content">{{ bip.content }}</p>
         </div>
         <div class="bip-card-image-area" *ngIf="bip.picture">
             <img class="bip-card-image-area__img" [src]="bip.picture" alt=""/>
-          </div>    
+        </div>
+        <p class="bip-card-content-area__date">{{ bip.createdAt | date }}</p> 
+        <div class="bip-card-comment-form-area">
+            <app-comment-form class="app-comment-form" *ngIf="showCommentFormFor === bip._id" (commentSubmitted)="createComment($event.comment, bip._id)"></app-comment-form>
+            <div class="comment-list-container" *ngIf="showCommentFormFor === bip._id" >
+                <div class="comment-list-area" *ngFor="let comment of commentsList.reverse()">
+                    <div class="comment-list-area__id">
+                        <img class="bip-card-id__img" [src]="getUserImage(comment.user) ? getUserImage(comment.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
+                        <h5 class="comment-list-name">{{ getUserName(comment.user) }}</h5>
+                    </div>
+                    <p class="comment-list-date">{{ comment.createdAt | date }}</p>
+                    <h6 class="comment-list-content">
+                        {{ comment.content }}
+                    </h6>
+                    <hr>
+                </div>
+            </div>
+        </div>  
     </div>
 </article>
 <article *ngIf="!bipsList || bipsList.length === 0" class="no-bips-message">
