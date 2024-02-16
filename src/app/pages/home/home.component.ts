@@ -28,6 +28,10 @@ export class HomeComponent implements OnInit {
     this.loadData();
   }
 
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('token');
+  }
+
   updateBipsList() {
     this.loadData(); // Recargo los datos cada vez que se emite el evento bipCreated
   }
@@ -52,7 +56,6 @@ export class HomeComponent implements OnInit {
       next: (response: any) => {
         this.bipsList = response;
         console.log(this.bipsList);
-        console.log(this.usersMap);
       },
       error: (error) => {
         console.error('Error al obtener los datos de los bips:', error);

@@ -38,12 +38,14 @@ body {
 
 .header-logo {
     width: 150px;
+    cursor: pointer;
 }
 
 .logout-icon {
     position: absolute;
     width: 30px;
     right: 15px;
+    cursor: pointer;
 }
 
 /*VIEW-NAVBAR*/
@@ -390,6 +392,10 @@ body {
 .comment-list-date, .bip-card-content-area__date {
     color: limegreen;
     margin-bottom: 0;
+}
+
+.profile {
+    margin-bottom: 20px;
 }
 
 .comment-list-content {

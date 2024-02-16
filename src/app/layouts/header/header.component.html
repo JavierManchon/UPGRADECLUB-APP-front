@@ -1,7 +1,10 @@
 <header class="header-container">
     <div class="header-logo-area">
-        <img *ngIf="isLoggedIn()" class="logout-icon" (click)="logout()" src="../../../assets/images/logout-icon.webp">
-        <img class="header-logo" src="../../../assets/images/upgradelogonew.webp" alt="logo upgrade">
+        <img *ngIf="isLoggedIn(); else login" class="logout-icon" (click)="logout()" src="../../../assets/images/logout-icon.webp">
+        <ng-template #login>
+            <img routerLink="/auth/login" class="logout-icon" src="../../../assets/images/icono-muestra.png">
+        </ng-template>
+        <img routerLink="''" class="header-logo" src="../../../assets/images/upgradelogonew.webp" alt="logo upgrade">
     </div>
 </header>
 

@@ -22,7 +22,6 @@ export class RegisterFormComponent {
 
   }
 
-  //TODO: Subir imagen de usuario
   formHandler() {
     this.status = 'loading'
     if(this.registerForm.valid){

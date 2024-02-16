@@ -38,7 +38,8 @@
             </div>
             <div class="bip-card-image-area" *ngIf="bip.picture">
                 <img class="bip-card-image-area__img" [src]="bip.picture" alt=""/>
-              </div>    
+            </div>  
+            <p class="bip-card-content-area__date profile">{{ bip.createdAt | date }}</p>   
         </div>
     </article>
     <article *ngIf="!bipsList || bipsList.length === 0" class="no-bips-message">

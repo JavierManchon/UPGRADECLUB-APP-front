@@ -14,7 +14,12 @@
         <div class="bip-card-content-and-interactions-area">
             <div class="bip-card-interactions">
                 <img class="bip-card-interactions__item" src="./../../../assets/images/like-image.png" alt="icono like"/>
-                <img class="bip-card-interactions__item" (click)="toggleCommentSection(bip._id)" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
+                <img *ngIf="isLoggedIn()" class="bip-card-interactions__item" (click)="toggleCommentSection(bip._id)" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
+                <img *ngIf="!isLoggedIn()" 
+                class="bip-card-interactions__item" 
+                routerLink="/auth/login"
+                src="./../../../assets/images/comentario-icono.png" 
+                alt="icono comentarios"/>
             </div>
             <p class="bip-card-content-area__content">{{ bip.content }}</p>
         </div>

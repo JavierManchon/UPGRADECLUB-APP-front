@@ -15,14 +15,14 @@ export class CommentsService {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('Token de autenticación no encontrado');
-      return of(null); // Devolver un observable con un valor nulo
+      return of(null); 
     }
   
     return this.authService.getUserByToken(token).pipe(
       mergeMap((userData: any) => {
         if (!userData) {
           console.error('Datos de usuario no encontrados');
-          return of(null); // Devolver un observable con un valor nulo
+          return of(null); 
         }
   
         const userId = userData._id;
