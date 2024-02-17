@@ -2,7 +2,7 @@
 <app-post *ngIf="activeToken && !loading" (bipCreated)="updateBipsList()"></app-post>
 <div *ngIf="loading" class="loading-icon">
     <img src="./../../../assets/images/upgrade-club.png" alt="Cargando...">
-  </div>
+</div>
 <article *ngIf="!loading && (bipsList && bipsList.length > 0)" class="my-bips-container">
     <div class="bip-card" *ngFor="let bip of bipsList">
         <div class="bip-card-id">

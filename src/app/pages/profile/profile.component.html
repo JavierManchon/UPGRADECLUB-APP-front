@@ -21,8 +21,11 @@
             </form>
         </div>
     </article>
-    <article *ngIf="bipsList && bipsList.length > 0" class="my-bips-container">
-        <div class="bip-card" *ngFor="let bip of bipsList.reverse()">
+    <div *ngIf="loading" class="loading-icon">
+        <img src="./../../../assets/images/upgrade-club.png" alt="Cargando...">
+    </div>
+    <article *ngIf="!loading && (bipsList && bipsList.length > 0)" class="my-bips-container">
+        <div class="bip-card" *ngFor="let bip of bipsList">
             <div class="bip-card-id">
                 <img class="bip-card-id__img" [src]="userData.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
                 <h4 class="bip-card-id__username">{{userData?.username}}</h4>
@@ -42,7 +45,7 @@
             <p class="bip-card-content-area__date profile">{{ bip.createdAt | date }}</p>   
         </div>
     </article>
-    <article *ngIf="!bipsList || bipsList.length === 0" class="no-bips-message">
+    <article *ngIf="!loading && (!bipsList || bipsList.length === 0)" class="no-bips-message">
         <p>Todavía no has publicado ningún bip...</p>
     </article>
 </section>

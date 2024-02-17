@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   showEditForm: boolean = false;
   newUsername: string = '';
   newPicture: File | null = null;
+  loading: boolean = true;
 
   constructor(private authService: AuthService, private bipsService: BipsService, private router: Router, private route: ActivatedRoute  ) {}
 
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
       next: (response: any) => {
         this.userData = response;
         console.log('Datos del usuario:', this.userData);
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error al obtener los datos del usuario:', error);
@@ -31,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
     this.bipsService.getBips().subscribe({
       next: (response: any) => {
-        this.bipsList = response;
+        this.bipsList = response.reverse();
         console.log(this.bipsList);
       },
       error: (error) => {
