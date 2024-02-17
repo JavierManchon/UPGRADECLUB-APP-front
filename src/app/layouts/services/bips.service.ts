@@ -10,23 +10,23 @@ export class BipsService {
   constructor(private http: HttpClient) { }
 
   getBips() {
-    return this.http.get('http://localhost:3000/api/bips')
+    return this.http.get('https://upgradeclub-app-back.vercel.app/api/bips')
   }
 
   getAllBips() {
-    return this.http.get('http://localhost:3000/api/all-bips')
+    return this.http.get('https://upgradeclub-app-back.vercel.app/api/all-bips')
   }
 
   createBip(bip: any) {
-    return this.http.post('http://localhost:3000/api/create-bip', bip)
+    return this.http.post('https://upgradeclub-app-back.vercel.app/api/create-bip', bip)
   }
 
   deleteBip(id: string) {
-    return this.http.delete(`http://localhost:3000/api/bips/${id}`)
+    return this.http.delete(`https://upgradeclub-app-back.vercel.app/api/bips/${id}`)
   }
 
   patchLikes(id: string, likes: string[]) {
-    return this.http.patch(`http://localhost:3000/api/bips/${id}`, {likes})
+    return this.http.patch(`https://upgradeclub-app-back.vercel.app/api/bips/${id}`, {likes})
   }
 
 }

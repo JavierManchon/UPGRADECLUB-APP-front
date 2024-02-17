@@ -27,12 +27,12 @@ export class CommentsService {
   
         const userId = userData._id;
   
-        return this.http.post(`http://localhost:3000/api/create-comment/${id}/${userId}`, { content });
+        return this.http.post(`https://upgradeclub-app-back.vercel.app/api/create-comment/${id}/${userId}`, { content });
       })
     );
   }
 
   getAllComments(id: string) {
-    return this.http.get(`http://localhost:3000/api/comments/all/${id}`)
+    return this.http.get(`https://upgradeclub-app-back.vercel.app/api/comments/all/${id}`)
   }
 }

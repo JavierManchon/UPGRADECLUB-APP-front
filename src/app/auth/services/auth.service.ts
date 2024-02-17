@@ -9,30 +9,30 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: any) {
-    return this.http.post('http://localhost:3000/api/register', user)
+    return this.http.post('https://upgradeclub-app-back.vercel.app/api/register', user)
   };
 
   login(user: any) {
-    return this.http.post('http://localhost:3000/api/login',user, { observe: 'response' })
+    return this.http.post('https://upgradeclub-app-back.vercel.app/api/login',user, { observe: 'response' })
   };
 
   logout() {
-    return this.http.get('http://localhost:3000/api/logout')
+    return this.http.get('https://upgradeclub-app-back.vercel.app/api/logout')
   };
 
   getUserByToken(token: string){
     const headers = {
       "Authorization": `Bearer ${token}`
     }
-    return this.http.get(`http://localhost:3000/api/get-user`, {headers})
+    return this.http.get(`https://upgradeclub-app-back.vercel.app/api/get-user`, {headers})
   }
 
   getUserById(id: string) {
-    return this.http.get(`http://localhost:3000/api/get-user/${id}`);
+    return this.http.get(`https://upgradeclub-app-back.vercel.app/api/get-user/${id}`);
   }
 
   patchUser(id: string, userData: any) {
-    return this.http.patch(`http://localhost:3000/api/edit/${id}`, userData)
+    return this.http.patch(`https://upgradeclub-app-back.vercel.app/api/edit/${id}`, userData)
   }
 
 }
