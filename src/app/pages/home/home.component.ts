@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   likes: number = 0;
   liked: boolean = false;
   activeUserId: string = '';
+  loading: boolean = true;
 
   constructor(private bipsService: BipsService, private authService: AuthService, private commentsService: CommentsService) {}
 
@@ -28,20 +29,20 @@ export class HomeComponent implements OnInit {
     //Reviso si hay un token activo en el sessionStorage. y si lo hay me devuelve un true y si no me devuelve un false
     const token = sessionStorage.getItem('token');
     this.activeToken = !!token;
+    this.loadData();
 
     if (token !== null) {
       this.activeToken = true;
       this.authService.getUserByToken(token).subscribe({
           next: (response: any) => {
               this.activeUserId = response._id;
-              console.log('Datos del usuario:', response);
-              this.loadData();
+              console.log('Datos del usuario:', response);           
           },
           error: (error) => {
               console.error('Error al obtener los datos del usuario:', error);
           }
       });
-  }
+    }
   }
 
   isLoggedIn(): boolean {
@@ -76,6 +77,7 @@ export class HomeComponent implements OnInit {
       next: (response: any) => {
         this.bipsList = response;
         console.log(this.bipsList);
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error al obtener los datos de los bips:', error);
