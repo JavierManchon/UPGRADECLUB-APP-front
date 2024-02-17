@@ -1,8 +1,8 @@
 <nav class="nav-container">
     <div class="nav-area">
         <ul class="nav-list" *ngIf="isLoggedIn()">
-            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Home'}" (click)="handleNavigateHome()">Home</li>
-            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Profile'}" (click)="handleNavigateProfile(userData?._id)">Perfil</li>
+            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Home'}" (click)="handleNavigate('Home')" [routerLink]="['']">Home</li>
+            <li class="nav-option" [ngClass]="{'nav-active': activeNavOption === 'Profile'}" (click)="handleNavigate('Profile')" [routerLink]="['./profile', id]">Perfil</li>
         </ul>
     </div>
 </nav>

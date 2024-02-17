@@ -291,6 +291,9 @@ body {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .loading-icon img {

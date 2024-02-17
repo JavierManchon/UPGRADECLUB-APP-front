@@ -35,13 +35,7 @@ export class ViewNavbarComponent implements OnInit {
     return !!sessionStorage.getItem('token');
   }
 
-  handleNavigateProfile(id: string) {
-    this.activeNavOption = 'Profile'; // Cambio a 'Profile' cuando se hace clic en el perfil
-    this.router.navigate([`profile/${this.id}`])
-  }
-
-  handleNavigateHome() {
-    this.activeNavOption = 'Home'; //igual con 'Home'
-    this.router.navigate(['']);
+  handleNavigate(section: string) {
+    this.activeNavOption = section; // Cambio a 'Profile' cuando se hace clic en el perfil
   }
 }
