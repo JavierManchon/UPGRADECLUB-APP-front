@@ -34,15 +34,18 @@ export class RegisterFormComponent {
       this.authService.register(objectToSend).subscribe({
         next: (response: any) => {
           this.status = 'success'
-          this.message = response.msg
+          this.message = response.message
         },
         error: (error) => {
           console.log(error)
             this.status = 'unauthorized'
-            this.message = error.error.msg
+            this.message = error.error.message
         }
       })
       this.registerForm.reset()
+    } else {
+      this.status = 'unauthorized';
+      this.message = "Asegurate de llenar todos los campos del formulario. Revisa si tu contraseña tiene 8-12 caracteres, mayusculas, minusculas y caracteres expeciales.";
     }
   }
 }
