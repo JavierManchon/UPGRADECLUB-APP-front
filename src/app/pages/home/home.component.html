@@ -4,7 +4,7 @@
     <img src="./../../../assets/images/upgrade-club.png" alt="Cargando...">
   </div>
 <article *ngIf="!loading && (bipsList && bipsList.length > 0)" class="my-bips-container">
-    <div class="bip-card" *ngFor="let bip of bipsList.reverse()">
+    <div class="bip-card" *ngFor="let bip of bipsList">
         <div class="bip-card-id">
             <img class="bip-card-id__img" [src]="getUserImage(bip.user) ? getUserImage(bip.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
             <h4 class="bip-card-id__username">{{ getUserName(bip.user) }}</h4>
@@ -39,7 +39,7 @@
             <app-comment-form class="app-comment-form" *ngIf="showCommentFormFor === bip._id" (commentSubmitted)="createComment($event.comment, bip._id)"></app-comment-form>
             <div class="comment-list-container" *ngIf="showCommentFormFor === bip._id" >
                 <h6 class="comment-list-number">Comentarios ({{ getNumberOfComments(commentsList) }})</h6>
-                <div class="comment-list-area" *ngFor="let comment of commentsList.reverse()">
+                <div class="comment-list-area" *ngFor="let comment of commentsList">
                     <div class="comment-list-area__id">
                         <img class="bip-card-id__img" [src]="getUserImage(comment.user) ? getUserImage(comment.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
                         <h5 class="comment-list-name">{{ getUserName(comment.user) }}</h5>

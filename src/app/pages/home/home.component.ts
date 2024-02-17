@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
       })
     ).subscribe({
       next: (response: any) => {
-        this.bipsList = response;
+        this.bipsList = response.reverse();
         console.log(this.bipsList);
         this.loading = false;
       },
@@ -121,8 +121,7 @@ export class HomeComponent implements OnInit {
   getAllComments(bipId: string) {
     this.commentsService.getAllComments(bipId).subscribe({
       next: (response: any) => {
-        this.commentsList = response;
-        console.log(this.commentsList);
+        this.commentsList = response.reverse();
         this.commentsList.forEach((comment: any) => {
           if (!this.usersMap[comment.user]) {
             this.authService.getUserById(comment.user).subscribe({
