@@ -25,4 +25,8 @@ export class BipsService {
     return this.http.delete(`http://localhost:3000/api/bips/${id}`)
   }
 
+  patchLikes(id: string, likes: string[]) {
+    return this.http.patch(`http://localhost:3000/api/bips/${id}`, {likes})
+  }
+
 }

@@ -37,7 +37,7 @@ body {
 }
 
 .header-logo {
-    width: 150px;
+    width: 130px;
     cursor: pointer;
 }
 
@@ -250,6 +250,12 @@ body {
     cursor: pointer;
 }
 
+.count {
+    text-align: center;
+    cursor: none;
+    transform: translateY(-10px);
+}
+
 .bip-card-content-area__content {
     font-size: 15px;
 }
@@ -370,8 +376,11 @@ body {
 }
 
 .comment-list-number {
-    font-size: 20px;
+    font-size: 15px;
     color: #4f4f4f;
+    align-self: flex-end;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .comment-list-area__id {

@@ -13,13 +13,18 @@
         </div>
         <div class="bip-card-content-and-interactions-area">
             <div class="bip-card-interactions">
-                <img class="bip-card-interactions__item" src="./../../../assets/images/like-image.png" alt="icono like"/>
+                <img *ngIf="isLoggedIn()" (click)="handleLikes(bip._id)"
+                class="bip-card-interactions__item" [src]="bip.likes.includes(activeUserId) ? './../../../assets/images/liked-icon.webp' : './../../../assets/images/like-image.png'" alt="icono likes"/>
+                <img *ngIf="!isLoggedIn()" 
+                routerLink="/auth/login" class="bip-card-interactions__item" src="./../../../assets/images/like-image.png" alt="icono likes"/>
+                <span class="bip-card-interactions__item count">{{ bip.likes.length }}</span>
                 <img *ngIf="isLoggedIn()" class="bip-card-interactions__item" (click)="toggleCommentSection(bip._id)" src="./../../../assets/images/comentario-icono.png" alt="icono comentarios"/>
                 <img *ngIf="!isLoggedIn()" 
                 class="bip-card-interactions__item" 
                 routerLink="/auth/login"
                 src="./../../../assets/images/comentario-icono.png" 
                 alt="icono comentarios"/>
+                <span class="bip-card-interactions__item count">{{ getNumberOfComments(bip.comments) }}</span>
             </div>
             <p class="bip-card-content-area__content">{{ bip.content }}</p>
         </div>
@@ -30,15 +35,16 @@
         <div class="bip-card-comment-form-area">
             <app-comment-form class="app-comment-form" *ngIf="showCommentFormFor === bip._id" (commentSubmitted)="createComment($event.comment, bip._id)"></app-comment-form>
             <div class="comment-list-container" *ngIf="showCommentFormFor === bip._id" >
+                <h6 class="comment-list-number">Comentarios ({{ getNumberOfComments(bip.comments) }})</h6>
                 <div class="comment-list-area" *ngFor="let comment of commentsList.reverse()">
                     <div class="comment-list-area__id">
                         <img class="bip-card-id__img" [src]="getUserImage(comment.user) ? getUserImage(comment.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
                         <h5 class="comment-list-name">{{ getUserName(comment.user) }}</h5>
                     </div>
                     <p class="comment-list-date">{{ comment.createdAt | date }}</p>
-                    <h6 class="comment-list-content">
+                    <h4 class="comment-list-content">
                         {{ comment.content }}
-                    </h6>
+                    </h4>
                     <hr>
                 </div>
             </div>

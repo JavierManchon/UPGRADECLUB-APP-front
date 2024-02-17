@@ -2,7 +2,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { BipsService } from 'src/app/layouts/services/bips.service';
 import { CommentsService } from 'src/app/layouts/services/comments.service';
-import { map, tap } from 'rxjs';
+import { tap } from 'rxjs';
+import { Bip } from '../interfaces/Bip.interface';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class HomeComponent implements OnInit {
   commentsList: any[] = [];
   usersMap: { [key: string]: any } = {};
   showCommentFormFor: string | null = null;
+  likes: number = 0;
+  liked: boolean = false;
+  activeUserId: string = '';
 
   constructor(private bipsService: BipsService, private authService: AuthService, private commentsService: CommentsService) {}
 
@@ -25,7 +29,19 @@ export class HomeComponent implements OnInit {
     const token = sessionStorage.getItem('token');
     this.activeToken = !!token;
 
-    this.loadData();
+    if (token !== null) {
+      this.activeToken = true;
+      this.authService.getUserByToken(token).subscribe({
+          next: (response: any) => {
+              this.activeUserId = response._id;
+              console.log('Datos del usuario:', response);
+              this.loadData();
+          },
+          error: (error) => {
+              console.error('Error al obtener los datos del usuario:', error);
+          }
+      });
+  }
   }
 
   isLoggedIn(): boolean {
@@ -34,6 +50,10 @@ export class HomeComponent implements OnInit {
 
   updateBipsList() {
     this.loadData(); // Recargo los datos cada vez que se emite el evento bipCreated
+  }
+
+  getNumberOfComments(comments: any[]): number {
+    return comments ? comments.length : 0;
   }
 
   private loadData() {
@@ -127,7 +147,30 @@ export class HomeComponent implements OnInit {
         this.showCommentFormFor = bipId;
         this.getAllComments(bipId);
     }
-}
+  }
+
+  handleLikes(bipId: string): void {
+    const bip: Bip | undefined = this.bipsList.find((b: Bip) => b._id === bipId);
+    if (!bip) return;
+  
+    const userIndex: number = bip.likes.indexOf(this.activeUserId);
+  
+    if (userIndex === -1) {
+      bip.likes.push(this.activeUserId);
+    } else {
+      bip.likes.splice(userIndex, 1);
+    }
+  
+    this.bipsService.patchLikes(bipId, bip.likes).subscribe({
+      next: (updatedBip: any) => {
+        console.log('like actualizado:', updatedBip);
+      },
+      error: (error) => {
+        console.error('Error al dar like:', error);
+      }
+    });
+  }
+  
   
 }
 

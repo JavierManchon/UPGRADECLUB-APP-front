@@ -36,12 +36,12 @@ export class ViewNavbarComponent implements OnInit {
   }
 
   handleNavigateProfile(id: string) {
-    this.activeNavOption = 'Profile'; // Cambiar a 'Profile' cuando se hace clic en el perfil
+    this.activeNavOption = 'Profile'; // Cambio a 'Profile' cuando se hace clic en el perfil
     this.router.navigate([`profile/${this.id}`])
   }
 
   handleNavigateHome() {
-    this.activeNavOption = 'Home'; // Cambiar a 'Home' cuando se hace clic en Home
+    this.activeNavOption = 'Home'; //igual con 'Home'
     this.router.navigate(['']);
   }
 }
