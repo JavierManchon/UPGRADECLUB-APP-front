@@ -1,7 +1,9 @@
 
 <section class="profile-container">
     <article class="profile-id-container">
-        <img class="profile-id-image" [src]="userData?.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="">
+        <div class="profile-id-image-container">
+            <img class="profile-id-image" [src]="userData?.picture ? userData.picture : './../../../assets/images/icono-muestra.png'" alt="">
+        </div>
         <h3 class="profile-id-name">{{userData?.username}}</h3>
         <img class="edit-icon" src="./../../../assets/images/editar-icono.png" (click)="toggleEditForm()">
         <div class="edit-profile-form" *ngIf="showEditForm">
