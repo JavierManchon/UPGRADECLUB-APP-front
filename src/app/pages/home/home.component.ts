@@ -14,7 +14,7 @@ import { Bip } from '../interfaces/Bip.interface';
 export class HomeComponent implements OnInit {
 
   activeToken: boolean = false;
-  bipsList: any;
+  bipsList: Bip[] = [];
   commentsList: any[] = [];
   usersMap: { [key: string]: any } = {};
   showCommentFormFor: string | null = null;
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   liked: boolean = false;
   activeUserId: string = '';
   loading: boolean = true;
+  //FIXED: Para almacenar la informacion d elso comentarios de cada bip de manera independiente guardo lso id de cada comentario en y los asocio a un bip concreto.
+  bipComments: { [key: string]: any[] } = {};
 
   constructor(private bipsService: BipsService, private authService: AuthService, private commentsService: CommentsService) {}
 
@@ -43,6 +45,7 @@ export class HomeComponent implements OnInit {
           }
       });
     }
+
   }
 
   isLoggedIn(): boolean {
@@ -53,9 +56,11 @@ export class HomeComponent implements OnInit {
     this.loadData(); // Recargo los datos cada vez que se emite el evento bipCreated
   }
 
-  getNumberOfComments(comments: any[]): number {
+  getNumberOfComments(bipId: string): number {
+    const comments = this.bipComments[bipId];
     return comments ? comments.length : 0;
   }
+  
 
   private loadData() {
     this.bipsService.getAllBips().pipe(
@@ -77,6 +82,10 @@ export class HomeComponent implements OnInit {
       next: (response: any) => {
         this.bipsList = response.reverse();
         console.log(this.bipsList);
+        //Una vez tengo toda la info puedo renderizar los comentarios correspondientes
+        this.bipsList.forEach(bip => {
+          this.getAllComments(bip._id);
+        });   
         this.loading = false;
       },
       error: (error) => {
@@ -121,8 +130,10 @@ export class HomeComponent implements OnInit {
   getAllComments(bipId: string) {
     this.commentsService.getAllComments(bipId).subscribe({
       next: (response: any) => {
-        this.commentsList = response.reverse();
-        this.commentsList.forEach((comment: any) => {
+        const comments = response.reverse();
+        //Guardo los comentarios en el bip asociado
+        this.bipComments[bipId] = comments;
+        comments.forEach((comment: any) => {
           if (!this.usersMap[comment.user]) {
             this.authService.getUserById(comment.user).subscribe({
               next: (userDetails: any) => {
@@ -146,7 +157,10 @@ export class HomeComponent implements OnInit {
         this.showCommentFormFor = null;
     } else {
         this.showCommentFormFor = bipId;
-        this.getAllComments(bipId);
+        //Compruebo si ya estan cargados los comentarios para este bip concreto
+        if (!this.bipComments[bipId]) {
+          this.getAllComments(bipId);
+        }
     }
   }
 

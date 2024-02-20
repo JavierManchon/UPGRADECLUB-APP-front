@@ -27,7 +27,7 @@
                 routerLink="/auth/login"
                 src="./../../../assets/images/comentario-icono.png" 
                 alt="icono comentarios"/>
-                <span class="bip-card-interactions__item count">{{ getNumberOfComments(commentsList.length > 0 ? commentsList : bip.comments) }}</span>
+                <span class="bip-card-interactions__item count">{{ getNumberOfComments(bip._id) }}</span>
             </div>
             <p class="bip-card-content-area__content">{{ bip.content }}</p>
         </div>
@@ -38,8 +38,8 @@
         <div class="bip-card-comment-form-area">
             <app-comment-form class="app-comment-form" *ngIf="showCommentFormFor === bip._id" (commentSubmitted)="createComment($event.comment, bip._id)"></app-comment-form>
             <div class="comment-list-container" *ngIf="showCommentFormFor === bip._id" >
-                <h6 class="comment-list-number">Comentarios ({{ getNumberOfComments(commentsList) }})</h6>
-                <div class="comment-list-area" *ngFor="let comment of commentsList">
+                <h6 class="comment-list-number">Comentarios ({{ getNumberOfComments(bip._id) }})</h6>
+                <div class="comment-list-area" *ngFor="let comment of bipComments[bip._id] || []">
                     <div class="comment-list-area__id">
                         <img class="bip-card-id__img" [src]="getUserImage(comment.user) ? getUserImage(comment.user) : './../../../assets/images/icono-muestra.png'" alt="icono usuario"/>
                         <h5 class="comment-list-name">{{ getUserName(comment.user) }}</h5>
